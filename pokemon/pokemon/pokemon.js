@@ -47,11 +47,12 @@ function displayCards(results) {
   });
 }
 
-function getRandomColor() {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)]; //0-15
-  }
-  return color;
+ function getRandomColor() {
+  var hue = Math.floor(Math.random() * 360); //hue= type of color
+  
+
+  var saturation = Math.floor(Math.random() * 20) + 80;  //intensity or vividness of color
+  var lightness = Math.floor(Math.random() * 20) + 80; 
+  
+  return 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)';
 }
