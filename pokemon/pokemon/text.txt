@@ -1,0 +1,37 @@
+HTML
+Kam krijuar nje div container i cili do te mbaje kartat pokemon, te cilat do gjenerohen ne menyre dinamike ne js
+
+CSS
+Body-t i vendos display:flex flex-direction:column qe h1 dhe containeri te pozicionohen me njeri tjeterin ne rreshta te ndryshem.
+Me pas stilozoj container-in ku i vendos display:grid dhe nepermjet   grid-template-columns: repeat(6, auto)
+bej te mundur qe te krijohen 6 kolona ne rresht me te njejten gjeresi por ne baze te ekranit pa e specifikuar ate ne menyre statike.
+Me poshte kam krijuar klasen card e cila do ti vendoset ne menyre dinamike cdo card qe do krijoj ne js.
+Dhe disa klasa te tjera qe stlizojne shkrimin, number dhe foton e cdo pokemon card qe do krijoj ne js.
+
+JS:
+const pokContainer = document.getElementById("container") aksesoj containerin qe kam krijuar ne html per te mbajtur te gjitha cards.
+Nepemjet funksionit fetch une mund te marr te dhenat nga nje url apo api e caktuar, `https://pokeapi.co/api/v2/pokemon?limit=150` 
+ne rastin tone me duhej te specifikoja edhe limit=150 ne menyre qe te merrja 150 te dhena, perndryshe duke perdorur url qe kam vendosur
+ ne koment merrja vetem 20 te tilla. 
+Nje fetch kthen nje promise dhe si fillim kontrolloj nese rezultati i kthyer ka status ok ose jo, duke perdorur .then(), 
+pra nese promise eshte resolved, te dhenat jane bere fetch me sukses nga api, nese jo hedh nje error qe nuk i kam marre te dhenat.
+Nese te dhenat jane bere fetch me sukses, une marr nje response object, te cilit i therras .json() qe te dhenat e tij ti bej parse 
+nga json ne javascript object, per te pnumuar me thjeshte me nje objekt js.
+ Pasi parse behet me sukses vazhdoj me .then() e dyte, ku kam vendosur si parameter data qe perfaqeson 
+te dhenat json te bera parse me sukses. Per te pare cfare marr bej nje console.log dhe therras funskionin displayCards 
+per keto te dhena qe bera fetch.
+Funkcioni displayCards eshte ai qe do krijoje cards per cdo pokemon dhe do u vendose css classes ne menyre dinamike.
+Data ishte nje objekt, mua me duhen te dhenat mbi pokemns dhe jo key te tjera prandaj e therras funskinon displayCards(data.results);
+ me data.results pasi data.results mban te dhenat per 150 pokemons ne nje array me 150 javascript objects, bej forEach() i cili 
+ eshte nje loop per elementet e nje vektori dhe mbi cdo element zbaton funksionin qe merr si argument. NE kete rast ,
+ me forEach marr cdo objekt nga vektori, ku cdo objekt perfaqeson 1 pokemon, dhe ka te dhena si name dhe url. 
+ Krijoj nje div i vendos clasen qe kam krijuar .card dhe si tekst te ketij divit vendos name dhe img per pokemonin perktaese dhe id,
+  te cilen me duhet ta marr nga url pasi objekti i pokemonit nuk kishte nje key id.
+Pasi krijoj tekstin e card me divPokemon.innerHTML = cardInnerHTML; e vendos tek divPokemin qe perfaqeson card per 1 pokemon.
+divPokemon.style.backgroundColor = getRandomColor(); Nepemjet ketij rreshti cdo pokemon card apo div i vendos 
+nje background color random qe gjenerohet nepemjet funksionit getRandomColor(). 
+Kete nepemjet forEach() e bej per te 150 objektet pokemon.
+Ky funksion gjeneron nje ngjyre te formatit #ttttt par me 6 karaktere ne total, prandaj loopi ekzekutohet 6 here dhe 
+nga vektori letters marr nje nga karakteret e tij random. Math.floor(Math.random() * 16) kthen vlera nga 0-15 
+dhe letters[Math.floor(Math.random() * 16)] kthen random nje nga 16 vlerat e veta.
+Dhe ne fund divPokemon ose card sic i jam referuar deri tani e bej append tek containeri qe do mbaje te gjitha keto cards apo div.
