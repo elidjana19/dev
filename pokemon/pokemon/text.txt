@@ -35,3 +35,33 @@ Ky funksion gjeneron nje ngjyre te formatit #ttttt par me 6 karaktere ne total, 
 nga vektori letters marr nje nga karakteret e tij random. Math.floor(Math.random() * 16) kthen vlera nga 0-15 
 dhe letters[Math.floor(Math.random() * 16)] kthen random nje nga 16 vlerat e veta.
 Dhe ne fund divPokemon ose card sic i jam referuar deri tani e bej append tek containeri qe do mbaje te gjitha keto cards apo div.
+
+
+//CARD ANIMATION
+Efekti qe dua te arrij eshte qe card te rotullohet ne baze te pozicionit ku une bej hover. Prandaj kam krijuar 4 animacione ne baze te 
+4 pozicioneve top-left top-right bottom-left bottom-right duke perdorur keyframe.
+Tek secili keyframe ne baze te pozicionit kam percaktuar sa degre do te rrotullohet card duke perdorur rotateX rotateY rotateZ.
+Per te zbatuar secilin keyframe mbi cards kam krijuar 4 klasa .top-left .top-right .bottom-left .bottom-right dhe ne momentin qe bej hover si stilizim ketyre klasave u vendosos
+animacionet me keyframe qe krijova psh animation: rotateBottomRight 0.3s forwards;
+ku percaktoj emrin e keyframet , duration, and forwards qe stilizimi i meparshem te jet aktivi tek elementi 
+
+ME duhet te perdor js qe keto klasa ti aplikoj tek cards duke gjetur pozicionin e mouse.
+Ne js kam krijuar 2 funksione nje per te vendosur keto klasa dhe nje per ti hequr. Keto klasat i vendos kur kam eventin mousemove dhe i heq nga cards kurkam eventin mouseleave.
+
+funtion handleHover(): gjen pozionin e mouse kur ben hover mbi card dhe ne baze te poziionit nese eshte top-left top-right
+bottom-left apo bottom-right vendos 1 nga 4 klasat qe kam krijuar ne css.
+PEr te gjetur pozicionin e mouse brenda card me duhet qe te krijoj 2 variabla 
+x dhe y ku x mban pozicionin horizontal te mouse mbi card dhe y ate vertikal.
+event tek metoda perfaqeson- mousemove
+card.getBoundingClientRect() nepermjet kesaj metode marr size e card dhe te dhena si left right bottom top 
+pra distanca qe ka kjo card nga viewport ne keto 4 pozicione.
+
+Per te llogaritur ku ndodhet mouse brenda card ne rrafshin horizontal perdor 
+const x = event.clientX - cardRect.left;  qe llogarit distancen horizantale nga left edge i card tek pozicioni aktual x i mouse
+dhe per te llogaritur ku ndodhet mouse ne rrashtin vertikal branda card perdor   const y = event.clientY - cardRect.top; qe me jep distancen nga top edge i card deri tek pozicini aktual y i mouse
+
+
+sigurohem qe cards nuk kane asnje klase te aplikuar. dhe me if kontrolloj ne cilin "kuadrat" ndodhem 
+pra top-left nese pozicioni horizontal i mouse brenda card < width/2 te card dhe pozicioni vertikal i mouse brenda card < height/2 i card
+ME kete logjike kontrolloj edhe per 3 pozionet etjera. PAsi gjej pozicionin e mouse bernda card une ate klase ia vendos card dhe card tani ne baze se si une vendos mouse
+ka 4 klasa css qe do bejne te mundur rotate e saj. 
